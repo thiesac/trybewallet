@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 class Header extends Component {
   render() {
-    // const { email } = this.state;
+    const { email } = this.props;
     return (
       <div>
-        {/* <h2>Header</h2>
+        <h2>Header</h2>
         <div>
           <p data-testid="email-field">{ email }</p>
         </div>
@@ -17,15 +18,18 @@ class Header extends Component {
         <div>
           <h4>Câmbio</h4>
           <p data-testid="header-currency-field">BRL</p>
-        </div> */}
+        </div>
       </div>
     );
   }
 }
 
-// const mapStateToProps = (state) => ({
-//   ...state.user,
-// });
+Header.propTypes = {
+  email: PropTypes.string,
+}.isRequired;
 
-// export default connect(mapStateToProps)(Header);
-export default Header;
+const mapStateToProps = (state) => ({
+  email: state.user.email,
+});
+
+export default connect(mapStateToProps)(Header);
