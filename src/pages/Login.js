@@ -13,27 +13,44 @@ class Login extends React.Component {
   handleInput = ({ target: { name, value } }) => {
     this.setState({
       [name]: value,
-    }, this.validationFields);
+    });
+    this.validationFields();
   };
 
   validationFields = () => {
-    const { email, password } = this.state;
-    const emailRegex = /^[A-Za-z0-9_!#$%&'*+/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/i;
-    const isValidEmail = emailRegex.test(email);
-    const minLength = 6;
-    const isValidPassword = password.length >= minLength;
-
-    this.setState({
-      isSaveButtonDisabled:
-        !(
-          isValidEmail && isValidPassword
-        ),
+    this.setState((
+      {
+        email,
+        password,
+      },
+    ) => {
+      const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+      const isValidEmail = emailRegex.test(email);
+      const minLength = 6;
+      const isValidPassword = password.length >= minLength;
+      if (isValidEmail && isValidPassword) {
+        return {
+          isSaveButtonDisabled: false,
+        };
+      }
+      return {
+        isSaveButtonDisabled: true,
+      };
     });
+
+    // this.setState({
+    //   isSaveButtonDisabled:
+    //     !(
+    //       isValidEmail && isValidPassword
+    //     ),
+    // });
   };
 
-  handleClick = () => {
+  handleClick = (e) => {
+    e.preventDefault();
     const { dispatch, history: { push } } = this.props;
-    dispatch(addEmail(this.state));
+    const { email } = this.state;
+    dispatch(addEmail(email));
     push('/carteira');
   };
 
@@ -66,7 +83,8 @@ class Login extends React.Component {
           />
         </label>
         <button
-          onClick={ this.handleClick }
+          type="button"
+          onClick={ (e) => this.handleClick(e) }
           disabled={ isSaveButtonDisabled }
         >
           Entrar
