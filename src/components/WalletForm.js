@@ -4,18 +4,14 @@ import { connect } from 'react-redux';
 import { actionFetchCurrency } from '../redux/actions';
 
 class WalletForm extends Component {
-  state = {
-    currencies: [],
-  };
-
   componentDidMount() {
     const { dispatch } = this.props;
-    const { currencies } = this.state;
+    const { currencies } = this.props;
     dispatch(actionFetchCurrency(currencies));
   }
 
   render() {
-    const { currencies } = this.state;
+    const { currencies } = this.props;
     console.log(currencies);
     return (
       <div>
@@ -44,6 +40,7 @@ class WalletForm extends Component {
                 currencies.map((currency) => (
                   <option
                     key={ currency }
+                    value={ currency }
                   >
                     { currency }
                   </option>
@@ -53,10 +50,10 @@ class WalletForm extends Component {
           </label>
           <label>
             Método de Pagamento
-            <select>
-              <option>Dinheiro</option>
-              <option>Cartão de crédito</option>
-              <option>Cartão de débito</option>
+            <select data-testid="method-input">
+              <option value="cash">Dinheiro</option>
+              <option value="credit">Cartão de crédito</option>
+              <option value="debit">Cartão de débito</option>
             </select>
           </label>
           <label>
@@ -80,4 +77,8 @@ WalletForm.propTypes = {
   dispatch: PropTypes.func,
 }.isRequired;
 
-export default connect(null)(WalletForm);
+const mapStateToProps = (globalState) => ({
+  currencies: globalState.wallet.currencies,
+});
+
+export default connect(mapStateToProps)(WalletForm);
