@@ -18,7 +18,7 @@ const wallet = (state = INITIAL_STATE, action) => {
   case RECEIVE_UPDATED_RATE:
     return {
       ...state,
-      expenses: action.payload,
+      expenses: [...state.expenses, action.payload],
     };
   default:
     return state;

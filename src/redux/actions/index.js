@@ -25,9 +25,11 @@ export const actionFetchCurrency = () => async (dispatch) => {
   dispatch(receiveCurrency(currency));
 };
 
-export const actionFetchRate = (exchangeRate) => async (dispatch) => {
+export const actionFetchRate = (state) => async (dispatch) => {
   const response = await fetch(URL);
   const data = await response.json();
-  const currency = data[exchangeRate];
-  dispatch(receiveUpdatedRate(currency));
+  dispatch(receiveUpdatedRate({
+    ...state,
+    exchangeRate: data,
+  }));
 };

@@ -5,15 +5,12 @@ import { actionFetchCurrency, actionFetchRate } from '../redux/actions';
 
 class WalletForm extends Component {
   state = {
-    expenses: [{
-      id: 0,
-      value: '',
-      description: '',
-      currency: 'USD',
-      method: 'cash',
-      tag: 'food',
-      exchangeRates: {},
-    }],
+    id: 0,
+    value: '',
+    description: '',
+    currency: 'USD',
+    method: 'Dinheiro',
+    tag: 'food',
   };
 
   componentDidMount() {
@@ -28,16 +25,18 @@ class WalletForm extends Component {
     });
   };
 
-  handleClick = ({ target: { name, value } }) => {
+  handleClick = (e) => {
+    e.preventDefault();
     const { dispatch } = this.props;
-    const { expenses } = this.state;
-    dispatch(actionFetchRate(expenses));
     this.setState((prevState) => ({
-      expenses: [{
-        [name]: name === 'id' ? (prevState + 1) : value,
-      }],
+      id: prevState.id + 1,
+      value: '',
+      description: '',
+      currency: 'USD',
+      method: 'Dinheiro',
+      tag: 'Alimentação',
     }));
-    console.log(expenses);
+    return dispatch(actionFetchRate(this.state));
   };
 
   render() {
@@ -90,34 +89,34 @@ class WalletForm extends Component {
             Método de Pagamento
             <select
               data-testid="method-input"
-              name="payment"
+              name="method"
               onChange={ this.handleInput }
               defaultValue="cash"
             >
-              <option value="cash">Dinheiro</option>
-              <option value="credit">Cartão de crédito</option>
-              <option value="debit">Cartão de débito</option>
+              <option value="Dinheiro">Dinheiro</option>
+              <option value="Cartão de crédito">Cartão de crédito</option>
+              <option value="Cartão de débito">Cartão de débito</option>
             </select>
           </label>
           <label>
             Categoria
             <select
               data-testid="tag-input"
-              name="category"
+              name="tag"
               onChange={ this.handleInput }
               defaultValue="alimentacao"
             >
-              <option value="food">Alimentação</option>
-              <option value="leisure">Lazer</option>
-              <option value="work">Trabalho</option>
-              <option value="transportation">Transporte</option>
-              <option value="health">Saúde</option>
+              <option value="Alimentação">Alimentação</option>
+              <option value="Lazer">Lazer</option>
+              <option value="Trabalho">Trabalho</option>
+              <option value="Transporte">Transporte</option>
+              <option value="Saúde">Saúde</option>
             </select>
           </label>
         </div>
         <button
           type="button"
-          onClick={ this.handleClick }
+          onClick={ (e) => this.handleClick(e) }
         >
           Adicionar Despesa
         </button>
