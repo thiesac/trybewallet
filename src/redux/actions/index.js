@@ -13,9 +13,9 @@ const receiveCurrency = (currency) => ({
   payload: currency,
 });
 
-const receiveUpdatedRate = (rate) => ({
+const receiveUpdatedRate = (exchangeRate) => ({
   type: RECEIVE_UPDATED_RATE,
-  payload: rate,
+  payload: exchangeRate,
 });
 
 export const actionFetchCurrency = () => async (dispatch) => {
@@ -25,8 +25,9 @@ export const actionFetchCurrency = () => async (dispatch) => {
   dispatch(receiveCurrency(currency));
 };
 
-export const actionFetchRate = () => async (dispatch) => {
+export const actionFetchRate = (exchangeRate) => async (dispatch) => {
   const response = await fetch(URL);
   const data = await response.json();
-  dispatch(receiveUpdatedRate(data));
+  const currency = data[exchangeRate];
+  dispatch(receiveUpdatedRate(currency));
 };

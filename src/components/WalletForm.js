@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { actionFetchCurrency } from '../redux/actions';
+import { actionFetchCurrency, actionFetchRate } from '../redux/actions';
 
 class WalletForm extends Component {
-  // state = {
-  //   currencies: [],
-  //   expenses: [],
-  //   editor: false,
-  //   idToEdit: 0,
-  // };
+  state = {
+    currencies: [],
+    expenses: [],
+    editor: false,
+    idToEdit: 0,
+  };
 
   componentDidMount() {
     const { dispatch } = this.props;
@@ -23,10 +23,12 @@ class WalletForm extends Component {
     });
   };
 
-  // handleClick = () => {
-  //   const { dispatch } = this.props;
-  //   const { currencies } = this.state;
-  // };
+  handleClick = () => {
+    const { dispatch } = this.props;
+    const { expenses } = this.state;
+    dispatch(actionFetchRate(expenses));
+    console.log(expenses);
+  };
 
   render() {
     const { currencies } = this.props;
