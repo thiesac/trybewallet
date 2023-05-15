@@ -5,10 +5,15 @@ import { actionFetchCurrency, actionFetchRate } from '../redux/actions';
 
 class WalletForm extends Component {
   state = {
-    currencies: [],
-    expenses: [],
-    editor: false,
-    idToEdit: 0,
+    expenses: [{
+      id: 0,
+      value: '',
+      description: '',
+      currency: 'USD',
+      method: 'cash',
+      tag: 'food',
+      exchangeRates: {},
+    }],
   };
 
   componentDidMount() {
@@ -23,10 +28,15 @@ class WalletForm extends Component {
     });
   };
 
-  handleClick = () => {
+  handleClick = ({ target: { name, value } }) => {
     const { dispatch } = this.props;
     const { expenses } = this.state;
     dispatch(actionFetchRate(expenses));
+    this.setState((prevState) => ({
+      expenses: [{
+        [name]: name === 'id' ? (prevState + 1) : value,
+      }],
+    }));
     console.log(expenses);
   };
 
@@ -97,7 +107,7 @@ class WalletForm extends Component {
               onChange={ this.handleInput }
               defaultValue="alimentacao"
             >
-              <option value="alimentacao">Alimentação</option>
+              <option value="food">Alimentação</option>
               <option value="leisure">Lazer</option>
               <option value="work">Trabalho</option>
               <option value="transportation">Transporte</option>
