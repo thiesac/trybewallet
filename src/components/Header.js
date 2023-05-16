@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 class Header extends Component {
   sum = () => {
     const { expenses } = this.props;
-    return expenses.reduce((previousValue, { currency, exchangeRate, value }) => {
-      const convertedValue = value * exchangeRate[currency].ask;
+    return expenses.reduce((previousValue, { currency, exchangeRates, value }) => {
+      const convertedValue = value * exchangeRates[currency].ask;
       return previousValue + convertedValue;
     }, 0);
   };
