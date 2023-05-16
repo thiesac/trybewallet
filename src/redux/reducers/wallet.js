@@ -23,8 +23,13 @@ const wallet = (state = INITIAL_STATE, action) => {
   case DELETE_EXPENSE:
     return {
       ...state,
-      expenses: [...state.expenses, action.payload],
+      expenses: state.expenses.filter(({ id }) => id !== action.payload),
     };
+  // case DELETE_EXPENSE:
+  //   return {
+  //     ...state,
+  //     expenses: [...state.expenses, action.payload],
+  //   };
   default:
     return state;
   }

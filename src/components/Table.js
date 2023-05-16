@@ -5,10 +5,9 @@ import { deleteExpense } from '../redux/actions';
 
 class Table extends Component {
   onClickRemoveBtn = (id) => {
-    const { expenses } = this.props;
     const { dispatch } = this.props;
-    const newExpenses = expenses.filter((expense) => expense.id !== id);
-    return dispatch(deleteExpense(newExpenses));
+    // const newExpenses = expenses.filter((expense) => expense.id !== id);
+    dispatch(deleteExpense(id));
   };
 
   // onClickEditBtn = () => {
