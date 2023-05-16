@@ -37,13 +37,6 @@ class Login extends React.Component {
         isSaveButtonDisabled: true,
       };
     });
-
-    // this.setState({
-    //   isSaveButtonDisabled:
-    //     !(
-    //       isValidEmail && isValidPassword
-    //     ),
-    // });
   };
 
   handleClick = (e) => {

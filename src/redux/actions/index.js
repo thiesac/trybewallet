@@ -2,6 +2,8 @@ export const ADD_EMAIL = 'ADD_EMAIL';
 export const RECEIVE_CURRENCY = 'RECEIVE_CURRENCY';
 export const RECEIVE_UPDATED_RATE = 'RECEIVE_UPDATED_RATE';
 export const DELETE_EXPENSE = 'DELETE_EXPENSE';
+export const EDIT_EXPENSE = 'EDIT_EXPENSE';
+export const SAVE_EDITED_EXPENSE = 'SAVE_EDITED_EXPENSE';
 const URL = 'https://economia.awesomeapi.com.br/json/all';
 
 export const addEmail = (payload) => ({
@@ -21,6 +23,16 @@ const receiveUpdatedRate = (exchangeRates) => ({
 
 export const deleteExpense = (exchangeRates) => ({
   type: DELETE_EXPENSE,
+  payload: exchangeRates,
+});
+
+export const editExpense = (exchangeRates) => ({
+  type: EDIT_EXPENSE,
+  payload: exchangeRates,
+});
+
+export const saveEditedExpense = (exchangeRates) => ({
+  type: SAVE_EDITED_EXPENSE,
   payload: exchangeRates,
 });
 
