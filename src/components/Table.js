@@ -9,9 +9,9 @@ class Table extends Component {
     dispatch(deleteExpense(id));
   };
 
-  onClickEditBtn = () => {
+  onClickEditBtn = (id) => {
     const { dispatch } = this.props;
-    dispatch(editExpense());
+    dispatch(editExpense(id));
   };
 
   render() {
@@ -59,7 +59,7 @@ class Table extends Component {
                     <button
                       data-testid="edit-btn"
                       type="button"
-                      onClick={ () => this.onClickEditBtn() }
+                      onClick={ () => this.onClickEditBtn(id) }
                     >
                       Editar
                     </button>

@@ -11,6 +11,7 @@ class WalletForm extends Component {
     currency: 'USD',
     method: 'Dinheiro',
     tag: 'food',
+    editor: false,
   };
 
   componentDidMount() {
@@ -18,18 +19,23 @@ class WalletForm extends Component {
     dispatch(actionFetchCurrency());
   }
 
-  handleInputEdit = () => {
-    const { editor } = this.props;
-    if (editor) {
+  shouldComponentUpdate(prevProps) {
+    const { editor } = this.state;
+    if (editor !== prevProps.editor) {
+      const { editedExpense } = this.props;
+      console.log(editedExpense);
       this.setState({
-        value: 'teste',
-        description: 'teste',
-        currency: 'USD',
-        method: 'Dinheiro',
-        tag: 'food',
+        value: editedExpense.value,
+        description: editedExpense.description,
+        currency: editedExpense.currency,
+        method: editedExpense.method,
+        tag: editedExpense.tag,
+        editor: prevProps.editor,
       });
+      return false;
     }
-  };
+    return true;
+  }
 
   handleInput = ({ target: { name, value } }) => {
     this.setState({
@@ -69,7 +75,7 @@ class WalletForm extends Component {
               id="input-value"
               name="value"
               value={ value }
-              onChange={ editor ? this.handleInputEdit : this.handleInput }
+              onChange={ this.handleInput }
             />
           </label>
           <label htmlFor="input-description">
@@ -80,7 +86,7 @@ class WalletForm extends Component {
               id="input-description"
               name="description"
               value={ description }
-              onChange={ editor ? this.handleInputEdit : this.handleInput }
+              onChange={ this.handleInput }
             />
           </label>
           <label>
@@ -89,7 +95,7 @@ class WalletForm extends Component {
               data-testid="currency-input"
               name="currency"
               value={ currency }
-              onChange={ editor ? this.handleInputEdit : this.handleInput }
+              onChange={ this.handleInput }
             >
               {
                 currencies.map((crr) => (
@@ -149,9 +155,10 @@ WalletForm.propTypes = {
   dispatch: PropTypes.func,
 }.isRequired;
 
-const mapStateToProps = (globalState) => ({
-  currencies: globalState.wallet.currencies,
-  editor: globalState.wallet.editor,
+const mapStateToProps = ({ wallet: { currencies, editor, expenses, idToEdit } }) => ({
+  currencies,
+  editor,
+  editedExpense: expenses
+    .find(({ id }) => id === idToEdit),
 });
-
 export default connect(mapStateToProps)(WalletForm);
