@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { actionFetchCurrency, actionFetchRate } from '../redux/actions';
+import {
+  actionFetchCurrency,
+  actionFetchRate, saveEditedExpense,
+} from '../redux/actions';
 
 class WalletForm extends Component {
   state = {
@@ -20,7 +23,7 @@ class WalletForm extends Component {
   }
 
   shouldComponentUpdate(prevProps) {
-    const { editor } = this.state;
+    const { editor, id } = this.state;
     if (editor !== prevProps.editor) {
       const { editedExpense } = this.props;
       console.log(editedExpense);
@@ -31,6 +34,9 @@ class WalletForm extends Component {
         method: editedExpense.method,
         tag: editedExpense.tag,
         editor: prevProps.editor,
+        exchangeRates: editedExpense.exchangeRates,
+        id: editedExpense.id,
+        oldId: id,
       });
       return false;
     }
@@ -46,18 +52,31 @@ class WalletForm extends Component {
   handleClick = (e) => {
     e.preventDefault();
     const { dispatch } = this.props;
-    this.setState((prevState) => ({
-      id: prevState.id + 1,
-    }));
-    const { id, value, description, currency, method, tag } = this.state;
-    const newExpenses = {
-      id, value, description, currency, method, tag,
+    const { editor, id, value, description, currency,
+      method, tag, exchangeRates, oldId } = this.state;
+    if (!editor) {
+      this.setState((prevState) => ({
+        id: prevState.id + 1,
+      }));
+      // const {  } = this.state;
+      const newExpenses = {
+        id, value, description, currency, method, tag,
+      };
+      this.setState({
+        value: '',
+        description: '',
+      });
+      return dispatch(actionFetchRate(newExpenses));
+    }
+    const updatedExpenses = {
+      id, value, description, currency, method, tag, exchangeRates,
     };
     this.setState({
       value: '',
       description: '',
+      id: oldId,
     });
-    return dispatch(actionFetchRate(newExpenses));
+    dispatch(saveEditedExpense(updatedExpenses));
   };
 
   render() {

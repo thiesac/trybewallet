@@ -38,7 +38,12 @@ const wallet = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       editor: false,
-      idToEdit: action.payload,
+      idToEdit: 0,
+      expenses: state.expenses.map((expense) => {
+        if (expense.id === state.idToEdit) {
+          return { ...action.payload };
+        } return expense;
+      }),
     };
   default:
     return state;
