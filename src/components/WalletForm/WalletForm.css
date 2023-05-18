@@ -1,0 +1,18 @@
+.classForm-container {
+  padding: 20px;
+}
+
+.classForm-form {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  width: 100%;
+}
+
+.classForm-form input , select {
+  margin-left: 5px;
+}
+
+/* .classForm-form select {
+  background-color: #7c78b8;
+} */

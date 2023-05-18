@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { FaRegMoneyBillAlt } from 'react-icons/fa';
 import PropTypes from 'prop-types';
+import './Header.css';
 
 class Header extends Component {
   sum = () => {
@@ -14,13 +16,15 @@ class Header extends Component {
   render() {
     const { email } = this.props;
     return (
-      <div>
-        <h2>Header</h2>
+      <div className="header-container">
+        <h1>
+          Minhas Despesas
+        </h1>
         <div>
           <p data-testid="email-field">{ email }</p>
         </div>
         <div>
-          <h3>Gastos</h3>
+          <h4>Gastos</h4>
           <p data-testid="total-field">{ this.sum().toFixed(2) }</p>
         </div>
         <div>

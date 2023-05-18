@@ -1,0 +1,8 @@
+.wallet-outer-container {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 100vh;
+  min-width: 205vh;
+}

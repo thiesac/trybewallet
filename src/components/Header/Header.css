@@ -1,0 +1,26 @@
+.header-container {
+  align-items: baseline;
+  background: linear-gradient(90deg, #5d54a4, #7c78b8);
+  border-top: 1px solid #d4d3e8;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.header-container h1 {
+  color: #d4d3e8;
+  padding: 30px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.header-container h4 {
+  color: #d4d3e8;
+}
+
+.header-container p {
+  color: white;
+  font-size: 20px;
+}

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './WalletForm.css';
 import { connect } from 'react-redux';
 import {
   actionFetchCurrency,
   actionFetchRate, saveEditedExpense,
-} from '../redux/actions';
+} from '../../redux/actions';
 
 class WalletForm extends Component {
   state = {
@@ -26,7 +27,6 @@ class WalletForm extends Component {
     const { editor, id } = this.state;
     if (editor !== prevProps.editor) {
       const { editedExpense } = this.props;
-      console.log(editedExpense);
       this.setState({
         value: editedExpense.value,
         description: editedExpense.description,
@@ -58,7 +58,7 @@ class WalletForm extends Component {
       this.setState((prevState) => ({
         id: prevState.id + 1,
       }));
-      // const {  } = this.state;
+
       const newExpenses = {
         id, value, description, currency, method, tag,
       };
@@ -83,9 +83,8 @@ class WalletForm extends Component {
     const { currencies, editor } = this.props;
     const { value, description, currency } = this.state;
     return (
-      <div>
-        <h3>WalletForm</h3>
-        <form>
+      <div className="classForm-container">
+        <form className="classForm-form">
           <label htmlFor="input-value">
             Valor:
             <input

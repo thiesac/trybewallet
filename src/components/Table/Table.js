@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { deleteExpense, editExpense } from '../redux/actions';
+import { deleteExpense, editExpense } from '../../redux/actions';
+import './Table.css';
 
 class Table extends Component {
   onClickRemoveBtn = (id) => {
@@ -17,15 +18,15 @@ class Table extends Component {
   render() {
     const { expenses } = this.props;
     return (
-      <div>
+      <div className="table-container">
         <table>
           <thead>
             <tr>
-              <th>Descrição</th>
-              <th>Tag</th>
-              <th>Método de pagamento</th>
               <th>Valor</th>
+              <th>Descrição</th>
               <th>Moeda</th>
+              <th>Método de pagamento</th>
+              <th>Tag</th>
               <th>Câmbio utilizado</th>
               <th>Valor convertido</th>
               <th>Moeda de conversão</th>
@@ -48,7 +49,7 @@ class Table extends Component {
                     { (Number(exchangeRates[currency].ask) * Number(value)).toFixed(2) }
                   </td>
                   <td>Real</td>
-                  <td>
+                  <td className="table-buttons">
                     <button
                       data-testid="delete-btn"
                       type="button"

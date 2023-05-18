@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addEmail } from '../redux/actions';
+import { FaUser, FaLock } from 'react-icons/fa';
+import { GrFormNext } from 'react-icons/gr';
+import { addEmail } from '../../redux/actions';
+import './Login.css';
 
 class Login extends React.Component {
   state = {
@@ -51,36 +54,41 @@ class Login extends React.Component {
     const { email, password, isSaveButtonDisabled } = this.state;
 
     return (
-      <div>
+      <div className="login-container">
         <h2>Login</h2>
-        <label htmlFor="input-email">
-          Email
-          <input
-            data-testid="email-input"
-            type="email"
-            id="input-email"
-            name="email"
-            value={ email }
-            onChange={ this.handleInput }
-          />
-        </label>
-        <label htmlFor="input-password">
-          Senha
-          <input
-            data-testid="password-input"
-            type="password"
-            id="input-password"
-            name="password"
-            value={ password }
-            onChange={ this.handleInput }
-          />
-        </label>
+        <div className="login-container-inputs">
+          <label htmlFor="input-email">
+            Email
+            <FaUser className="login-icons" />
+            <input
+              data-testid="email-input"
+              type="email"
+              id="input-email"
+              name="email"
+              value={ email }
+              onChange={ this.handleInput }
+            />
+          </label>
+          <label htmlFor="input-password">
+            Senha
+            <FaLock className="login-icons" />
+            <input
+              data-testid="password-input"
+              type="password"
+              id="input-password"
+              name="password"
+              value={ password }
+              onChange={ this.handleInput }
+            />
+          </label>
+        </div>
         <button
           type="button"
           onClick={ (e) => this.handleClick(e) }
           disabled={ isSaveButtonDisabled }
         >
           Entrar
+          <GrFormNext />
         </button>
       </div>
     );
