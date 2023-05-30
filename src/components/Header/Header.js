@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { FaRegMoneyBillAlt } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 import './Header.css';
 

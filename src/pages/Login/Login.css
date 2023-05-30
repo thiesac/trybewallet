@@ -1,8 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway:400,700') ;
-
 * {
   box-sizing: border-box;
-  font-family: Raleway, sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -82,5 +79,5 @@ body {
 }
 
 .login-container button:disabled {
-  background-color: #d4d3df;
+  background-color: #c2c1cd;
 }

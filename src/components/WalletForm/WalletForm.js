@@ -108,7 +108,7 @@ class WalletForm extends Component {
             />
           </label>
           <label>
-            Moeda
+            Moeda:
             <select
               data-testid="currency-input"
               name="currency"
@@ -128,7 +128,7 @@ class WalletForm extends Component {
             </select>
           </label>
           <label>
-            Método de Pagamento
+            Método de Pagamento:
             <select
               data-testid="method-input"
               name="method"
@@ -140,7 +140,7 @@ class WalletForm extends Component {
             </select>
           </label>
           <label>
-            Categoria
+            Categoria:
             <select
               data-testid="tag-input"
               name="tag"

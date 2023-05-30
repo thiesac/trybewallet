@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { MdDeleteForever, MdModeEdit } from 'react-icons/md';
 import { deleteExpense, editExpense } from '../../redux/actions';
 import './Table.css';
 
@@ -39,11 +40,11 @@ class Table extends Component {
                 exchangeRates, currency, id, description, tag, method, value,
               }) => (
                 <tr key={ `${description}${id}` }>
-                  <td>{ description }</td>
-                  <td>{ tag }</td>
-                  <td>{ method }</td>
                   <td>{ Number(value).toFixed(2) }</td>
+                  <td>{ description }</td>
                   <td>{ exchangeRates[currency].name }</td>
+                  <td>{ method }</td>
+                  <td>{ tag }</td>
                   <td>{ Number(exchangeRates[currency].ask).toFixed(2) }</td>
                   <td>
                     { (Number(exchangeRates[currency].ask) * Number(value)).toFixed(2) }
@@ -55,6 +56,7 @@ class Table extends Component {
                       type="button"
                       onClick={ () => this.onClickRemoveBtn(id) }
                     >
+                      <MdDeleteForever style={ { color: 'red', fontSize: '20px' } } />
                       Excluir
                     </button>
                     <button
@@ -62,6 +64,7 @@ class Table extends Component {
                       type="button"
                       onClick={ () => this.onClickEditBtn(id) }
                     >
+                      <MdModeEdit style={ { color: 'orange', fontSize: '20px' } } />
                       Editar
                     </button>
                   </td>

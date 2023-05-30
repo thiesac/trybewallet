@@ -13,6 +13,19 @@
   margin-left: 5px;
 }
 
-/* .classForm-form select {
-  background-color: #7c78b8;
-} */
+.classForm-form button {
+  background: white;
+  border: 1px solid black;
+  color: black;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 5px 7px;
+  text-transform: uppercase;
+  transition: 0.2s;
+}
+
+.classForm-form button:hover {
+  background: #5c5696;
+  color: white;
+}
