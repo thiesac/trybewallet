@@ -1,10 +1,5 @@
-# :construction: README em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto.
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+# Wallet - EXPENSES CONTROL
+---
+This project was made to add/delete/edit expenses, choose the currency to convert to Brazilian Real and see the total amount of expenses. It was made using React, Redux, React Router, and Middlewares. I styled it using simple CSS. The tests were implemented using React Testing Library.
+---
+Feel free to contribute, open issues or contact me!
