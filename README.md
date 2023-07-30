@@ -48,3 +48,9 @@ Create a new branch: git checkout -b my-feature.
 Make your changes and commit them: git commit -m 'feat: add new feature'.
 Push to the branch: git push origin my-feature.
 Submit a pull request.
+
+## Acknowledgments
+Thank you to the developers of Trybe https://www.betrybe.com/
+
+## Contact
+For any questions or feedback, please reach out to thiesa.c@gmail.com.
